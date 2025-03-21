@@ -5,10 +5,6 @@ import { createAndSignTx } from "./api_request/pushToApi";
 
 ////// TO CONFIGURE //////
 dotenv.config()
-const accessToken = process.env.FORDEFI_API_TOKEN;
-const VAULT_ID = process
-
-////// TO CONFIGURE //////
 const fordefiConfig = {
   accessToken: process.env.FORDEFI_API_USER_TOKEN ?? "",
   privateKeyPath: "./fordefi_secret/private.pem",
@@ -27,7 +23,7 @@ const txParams = {
 
 
 async function main(): Promise<void> {
-    if (!accessToken) {
+    if (!fordefiConfig.accessToken) {
       console.error('Error: FORDEFI_API_TOKEN environment variable is not set');
       return;
     }
@@ -42,7 +38,7 @@ async function main(): Promise<void> {
       const signature = await signWithApiSigner(payload);
 
       // 3. Submit the transaction to Fordefi API and wait for result
-      const response = await createAndSignTx(fordefiConfig.pathEndpoint, accessToken, signature, timestamp, requestBody);
+      const response = await createAndSignTx(fordefiConfig.pathEndpoint, fordefiConfig.accessToken, signature, timestamp, requestBody);
       const fordDefiResult = response.data;
       console.log(fordDefiResult)
   
