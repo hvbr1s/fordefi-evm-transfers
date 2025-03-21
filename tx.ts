@@ -15,9 +15,9 @@ const fordefiConfig = {
 };
 
 const txParams = {
-  evmChain: "arbitrum",
+  evmChain: "bsc",
   to: "0xF659feEE62120Ce669A5C45Eb6616319D552dD93",
-  amount: "10000000"
+  amount: "100000"
 }
 
 
